@@ -4,12 +4,17 @@ jobs:
     docker:
       - image: circleci/node:latest-browsers
     steps:
-      - run: npm install -g
+      - run: 
+        sudo npm install -g
       - run:
-        command: npm test
+        command: 
+          npm test
         environment:
-          MOCHA_FILE: ./test_result/mocha/results.xml
+          MOCHA_FILE: 
+            ./test_result/mocha/results.xml
       - store_test_results:
-        path: ./test_result
+        path: 
+          ./test_result
       - store_artifacts:
-        path: ./test_result
+        path: 
+          ./test_result

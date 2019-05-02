@@ -1,7 +1,18 @@
-machine:
-  node:
-    version: 0.10
-
-test:
-  override:
-    - ./node_modules/.bin/mocha
+//.circleci/config.yml
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest-browsers
+    steps:
+      - checkout
+      - run: sudo npm install -g
+      - run:
+        command: npm test
+        environment:
+          MOCHA_FILE: ./test_result/mocha/results.xml
+        when: always
+      - store_test_results:
+        path: ./test_result
+      - store_artifacts:
+        path: ./test_result
